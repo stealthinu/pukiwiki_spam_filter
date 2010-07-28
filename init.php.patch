@@ -1,0 +1,20 @@
+--- pukiwiki-1.4.6plus-u2-eucjp/lib/init.php	2006-06-06 13:56:29.000000000 +0900
++++ test/lib/init.php	2007-05-15 11:46:06.000000000 +0900
+@@ -156,7 +156,7 @@
+ $user_agent = $matches = array();
+ 
+ $user_agent['agent'] = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
+-unset(${$ua}, $_SERVER[$ua], $HTTP_SERVER_VARS[$ua], $ua);	// safety
++//unset(${$ua}, $_SERVER[$ua], $HTTP_SERVER_VARS[$ua], $ua);	// safety
+ 
+ foreach ($agents as $agent) {
+ 	if (preg_match($agent['pattern'], $user_agent['agent'], $matches)) {
+@@ -166,7 +166,7 @@
+ 		break;
+ 	}
+ }
+-unset($agents, $matches);
++//unset($agents, $matches);
+ 
+ // Profile-related init and setting
+ define('UA_PROFILE', isset($user_agent['profile']) ? $user_agent['profile'] : '');

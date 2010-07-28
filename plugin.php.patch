@@ -1,0 +1,22 @@
+--- orig/pukiwiki-1.4.6plus-u2-eucjp/lib/plugin.php	2005-07-04 11:06:09.000000000 +0900
++++ test/lib/plugin.php	2007-05-31 16:05:47.000000000 +0900
+@@ -9,6 +9,8 @@
+ //
+ // Plugin related functions
+ 
++require_once(LIB_DIR . 'recaptchalib.php');
++
+ define('PKWK_PLUGIN_CALL_TIME_LIMIT', 768);
+ 
+ // Set global variables for plugins
+@@ -103,6 +105,10 @@
+ 	if(do_plugin_init($name) === FALSE)
+ 		die_message('Plugin init failed: ' . $name);
+ 
++	// Spam Filter
++    require_once(LIB_DIR . 'spam_filter.php');
++    spam_filter($name);
++
+ 	$retvar = call_user_func('plugin_' . $name . '_action');
+ 
+ 	// Insert a hidden field, supports idenrtifying text enconding

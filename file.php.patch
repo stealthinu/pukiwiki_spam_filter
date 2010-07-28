@@ -1,0 +1,14 @@
+--- pukiwiki-1.4.6plus-u2-eucjp/lib/file.php	2006-06-05 14:05:57.000000000 +0900
++++ pukiwiki/lib/file.php	2007-04-18 15:41:05.000000000 +0900
+@@ -72,6 +72,11 @@
+ 	// Create and write diff
+ 	$oldpostdata = is_page($page) ? join('', get_source($page)) : '';
+ 	$diffdata    = do_diff($oldpostdata, $postdata);
++	// add client info
++	global $now;
++	$referer = htmlspecialchars($_SERVER['HTTP_REFERER']);
++	$user_agent = htmlspecialchars($_SERVER['HTTP_USER_AGENT']);
++	$diffdata .= "IP:{$_SERVER['REMOTE_ADDR']} TIME:\"$now\" REFERER:\"$referer\" USER_AGENT:\"$user_agent\"\n";
+ 	file_write(DIFF_DIR, $page, $diffdata);
+ 
+ 	// Create backup
