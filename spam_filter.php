@@ -9,7 +9,7 @@
  *
  * @authoer SATOH Kiyoshi (satoh at hakuba dot jp)
  * @link http://miasa.info/index.php?%C8%FE%CB%E3Wiki%A4%C7%A5%B7%A5%B9%A5%C6%A5%E0%C5%AA%A4%CB%BD%A4%C0%B5%A4%B7%A4%C6%A4%A4%A4%EB%C5%C0
- * @version 0.7.6
+ * @version 0.8.0
  * @license GPL v2 or (at your option) any later version
  */
 
@@ -56,28 +56,28 @@ define('SPAM_FILTER_IPCOUNTRY_FILE', 'delegated-apnic-latest');
 //// ngreg     - 内容の正規表現フィルタ
 // コメント中で許可しない内容の正規表現
 define('SPAM_FILTER_NGREG_REG', '');
-define('SPAM_FILTER_NGREG_PLUGIN_NAME', 'edit,comment,pcomment,article');
+define('SPAM_FILTER_NGREG_PLUGIN_NAME', 'edit,comment,pcomment,article,bugtrack');
 
 //// url       - 内容にURLっぽいものが含まれているかチェック
 define('SPAM_FILTER_URL_REG', '/https?:/i');
-define('SPAM_FILTER_URL_PLUGIN_NAME', 'edit,comment,pcomment,article');
+define('SPAM_FILTER_URL_PLUGIN_NAME', 'edit,comment,pcomment,article,bugtrack');
 
 //// atag      - 内容に</A>や[/URL]のようなアンカータグが含まれているかチェック
 define('SPAM_FILTER_ATAG_REG', '/<\/a>|\[\/url\]/i');
-define('SPAM_FILTER_ATAG_PLUGIN_NAME', 'edit,comment,pcomment,article');
+define('SPAM_FILTER_ATAG_PLUGIN_NAME', 'edit,comment,pcomment,article,bugtrack');
 
 //// onlyeng   - 内容が半角英数のみ(日本語が入っていない)かチェック
 define('SPAM_FILTER_ONLYENG_REG', '/\A[!-~\n ]+\Z/');
-define('SPAM_FILTER_ONLYENG_PLUGIN_NAME', 'edit,comment,pcomment,article');
+define('SPAM_FILTER_ONLYENG_PLUGIN_NAME', 'edit,comment,pcomment,article,bugtrack');
 
 //// urlnum    - 内容に含まれているURLが何個以上かチェック
 define('SPAM_FILTER_URLNUM_NUM', '3');
 define('SPAM_FILTER_URLNUM_WHITEREG', SPAM_FILTER_WHITEREG);
 define('SPAM_FILTER_URLNUM_URLREG', SPAM_FILTER_URLREG);
-define('SPAM_FILTER_URLNUM_PLUGIN_NAME', 'edit,comment,pcomment,article');
+define('SPAM_FILTER_URLNUM_PLUGIN_NAME', 'edit,comment,pcomment,article,bugtrack');
 
 //// ipunknown - クライアントのIPが逆引きできるかチェック
-define('SPAM_FILTER_IPUNKNOWN_PLUGIN_NAME', 'edit,comment,pcomment,article,attach');
+define('SPAM_FILTER_IPUNKNOWN_PLUGIN_NAME', 'edit,comment,pcomment,article,attach,bugtrack');
 
 //// ips25r    - クライアントのIPが動的IPっぽい(S25Rにマッチする)かチェック
 // S25Rの正規表現
@@ -87,31 +87,31 @@ define('SPAM_FILTER_IPS25R_PLUGIN_NAME', 'tb');
 //// ipbl      - クライアントのIPやホスト名によるフィルタ
 // 許可しないIPやホスト名の正規表現
 define('SPAM_FILTER_IPBL_REG', '');
-define('SPAM_FILTER_IPBL_PLUGIN_NAME', 'edit,comment,pcomment,article,attach');
+define('SPAM_FILTER_IPBL_PLUGIN_NAME', 'edit,comment,pcomment,article,attach,bugtrack');
 // ホスト名が見つけられなかったときにも拒否する場合 TRUE
 define('SPAM_FILTER_IPBL_UNKNOWN', FALSE);
 
 //// ipdnsbl   - クライアントのIPをDNSBLでチェック
-define('SPAM_FILTER_IPDNSBL_DNS', 'dnsbl.spam-champuru.livedoor.com,niku.2ch.net,bsb.spamlookup.net,bl.spamcop.net,all.rbl.jp');
-define('SPAM_FILTER_IPDNSBL_PLUGIN_NAME', 'edit,comment,pcomment,article,attach');
+define('SPAM_FILTER_IPDNSBL_DNS', 'niku.2ch.net,bsb.spamlookup.net,bl.spamcop.net,all.rbl.jp');
+define('SPAM_FILTER_IPDNSBL_PLUGIN_NAME', 'edit,comment,pcomment,article,attach,bugtrack');
 
 //// ipcountry - クライアントのIPの国をチェック
 // マッチさせる国を指定する正規表現
 define('SPAM_FILTER_IPCOUNTRY_REG', '/(CN|KR|UA)/');
-define('SPAM_FILTER_IPCOUNTRY_PLUGIN_NAME', 'edit,comment,pcomment,article,attach');
+define('SPAM_FILTER_IPCOUNTRY_PLUGIN_NAME', 'edit,comment,pcomment,article,attach,bugtrack');
 
 //// uaunknown - HTTP_USER_AGENTが既知(pukiwiki.ini.phpで$agentsで指定)かチェック
-define('SPAM_FILTER_UAUNKNOWN_PLUGIN_NAME', 'edit,comment,pcomment,article,attach');
+define('SPAM_FILTER_UAUNKNOWN_PLUGIN_NAME', 'edit,comment,pcomment,article,attach,bugtrack');
 
 //// useragent - HTTP_USER_AGENTによるフィルタ
 // 許可しないHTTP_USER_AGENTの正規表現
 define('SPAM_FILTER_USERAGENT_REG', '/WWW-Mechanize|libwww/i');
-define('SPAM_FILTER_USERAGENT_PLUGIN_NAME', 'edit,comment,pcomment,article,attach');
+define('SPAM_FILTER_USERAGENT_PLUGIN_NAME', 'edit,comment,pcomment,article,attach,bugtrack');
 
 //// acceptlanguage - HTTP_ACCEPT_LANGUAGEによるフィルタ
 // 許可しないHTTP_ACCEPT_LANGUAGEの正規表現
-define('SPAM_FILTER_ACCEPTLANGUAGE_REG', '/cn/i');
-define('SPAM_FILTER_ACCEPTLANGUAGE_PLUGIN_NAME', 'edit,comment,pcomment,article,attach');
+define('SPAM_FILTER_ACCEPTLANGUAGE_REG', '/cn|ru/i');
+define('SPAM_FILTER_ACCEPTLANGUAGE_PLUGIN_NAME', 'edit,comment,pcomment,article,attach,bugtrack');
 
 //// filename  - アップロードファイル名によるフィルタ
 // アップロードを許可しないファイル名の正規表現
@@ -121,7 +121,7 @@ define('SPAM_FILTER_FILENAME_PLUGIN_NAME', 'attach');
 //// formname  - 存在しないはずのフォーム内容があるかチェック
 // 存在しないはずのフォーム名の指定、カンマ区切り
 define('SPAM_FILTER_FORMNAME_NAME', 'url,email');
-define('SPAM_FILTER_FORMNAME_PLUGIN_NAME', 'edit,comment,pcomment,article');
+define('SPAM_FILTER_FORMNAME_PLUGIN_NAME', 'edit,comment,pcomment,article,bugtrack');
 
 //// urlbl     - URLがブラックリストに入っているか確認
 // URLのブラックリスト ホスト名でもIPでも可
@@ -221,9 +221,13 @@ class SpamFilter
     // SPAM_FILTER_COND で指定されたスパムフィルタを掛ける
     function is_spam($cond = SPAM_FILTER_COND)
     {
-        // edit で preview のときはチェック掛けない
+        // read と、edit で preview のときはチェック掛けない
         global $vars;
-        if ($this->plugin_name == 'edit' && isset($vars['preview'])) return FALSE;
+        if ($this->plugin_name == 'read' ||
+            $this->plugin_name == 'edit' && isset($vars['preview'])) return FALSE;
+        // bugtrack の時は summary と body を msg としてチェックする
+        if ($this->plugin_name == 'bugtrack')
+            $this->post_data['msg'] = $this->post_data['summary'] . $this->post_data['body'];
         // フィルタ条件の指定がなければそのまま返る
         if (preg_match('/^\s*$/', $cond)) return FALSE;
 
@@ -806,7 +810,6 @@ class SpamFilter
         $form .= ' <input type="hidden" name="page" value="' . htmlspecialchars($page) . '" />' . "\n";
         $form .= ' <input type="submit" name="" value="認証" /><br />' . "\n";
         $form .= '</form>' . "\n";
-
         die_message( "Spam check failed. Plugin:". $this->plugin_name ." Match:". $this->message ."<br>\n". $form );
     }
 
